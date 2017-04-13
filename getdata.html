@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery/jquery.js"></script>
+
+</head>
+<body>
+	<input type="text" id="pageIndex">
+	<input type="button" value="获取数据" id="btn">
+
+	<button class="pageIndex">1</button>
+	<button class="pageIndex">2</button>
+	<button class="pageIndex">3</button>
+	<button class="pageIndex">4</button>
+	<button class="pageIndex">5</button>
+	<button class="pageIndex">6</button>
+	<button class="pageIndex">7</button>
+	<script>
+		$(".pageIndex").click(function(){
+			var index = parseInt($(this).text());
+			$.ajax({
+				url: "data.php",
+				data: {pageIndex: index, pageCount: 5},
+				success: function(data){
+					if(data.code == 200){
+						console.table(data.result);
+					}
+				}
+			})
+		})
+		
+	</script>
+</body>
+</html>
